@@ -116,3 +116,57 @@ $box-size: 18px;
     transform: translateY(0);
   }
 }
+
+$button-height: 30px;
+$button-width: 40px;
+
+.buttons {
+  background: #fff;
+  bottom: 20px;
+  display: flex;
+  position: absolute;
+  right: 20px;
+  width: calc(#{$button-width} * 2);
+  .us,
+  .ja {
+    border: 3px solid #222;
+    height: $button-height;
+    position: relative;
+    width: $button-width;
+  }
+
+  .us {
+    background: repeating-linear-gradient(
+      0deg,
+      #e10404,
+      #e10404 2px,
+      #fff 0,
+      #fff 4px
+    );
+    border-right: none;
+    &::before {
+      background: blue;
+      content: "";
+      display: block;
+      height: calc(#{$button-height} / 3);
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: calc(#{$button-width} / 3);
+    }
+  }
+  .ja {
+    &::before {
+      background: #e10404;
+      border-radius: 50%;
+      content: "";
+      display: block;
+      height: calc(#{$button-width} / 3);
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      position: absolute;
+      width: calc(#{$button-width} / 3);
+    }
+  }
+}

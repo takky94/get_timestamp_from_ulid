@@ -8,6 +8,7 @@ import styles from "../styles/pages/index.module.scss";
 const Index: NextPage = () => {
   const [input, setInput] = useState<string>("");
   const [timestamp, setTimestamp] = useState<number>(NaN);
+  const [lang, setLang] = useState<"en" | "ja">("en");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -21,19 +22,27 @@ const Index: NextPage = () => {
     }
   };
 
+  const handleClick = (lang: "en" | "ja") => {
+    setLang(lang);
+  };
+
   return (
     <div className={styles.wrap}>
       <Head>
         <title>ULID Timestamp</title>
       </Head>
       <div className={styles.container}>
-        <h1 className={styles.title}>Get The Timestamp From A Given ULID</h1>
+        <h1 className={styles.title}>
+          {lang === "en"
+            ? "Get The Timestamp From A Given ULID"
+            : "ULIDからタイムスタンプを取得するや〜つ"}
+        </h1>
         <span className={styles.boxTop}></span>
         <span className={styles.boxBottom}></span>
         <div className={styles.main}>
           <input
             onChange={handleChange}
-            placeholder="Paste Here"
+            placeholder={lang === "en" ? "Paste Here" : "ULIDをここに貼り付け"}
             className={styles.input}
             type="text"
           />
@@ -41,7 +50,9 @@ const Index: NextPage = () => {
             {input.length > 0 && (
               <>
                 {isNaN(timestamp) && (
-                  <span className={styles.fadeInUp}>Error</span>
+                  <span className={styles.fadeInUp}>
+                    {lang === "en" ? "Error" : "過ち"}
+                  </span>
                 )}
                 {!isNaN(timestamp) && (
                   <div className={styles.fadeInUp}>
@@ -54,6 +65,16 @@ const Index: NextPage = () => {
               </>
             )}
           </div>
+        </div>
+        <div className={styles.buttons}>
+          <button
+            onClick={() => handleClick("en")}
+            className={styles.us}
+          ></button>
+          <button
+            onClick={() => handleClick("ja")}
+            className={styles.ja}
+          ></button>
         </div>
       </div>
     </div>
