@@ -1,13 +1,24 @@
+import dayjs from "dayjs";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { decodeTime } from "ulid";
 import styles from "../styles/pages/index.module.scss";
 
 const Index: NextPage = () => {
-  const [timestamp, setTimestamp] = useState("");
+  const [input, setInput] = useState<string>("");
+  const [timestamp, setTimestamp] = useState<number>(NaN);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTimestamp(e.target.value);
+    const { value } = e.target;
+    setInput(value);
+
+    try {
+      const timestamp = decodeTime(value);
+      setTimestamp(timestamp);
+    } catch (e) {
+      setTimestamp(NaN);
+    }
   };
 
   return (
@@ -26,12 +37,22 @@ const Index: NextPage = () => {
             className={styles.input}
             type="text"
           />
-          <div
-            className={`${styles.timestamp} ${
-              timestamp.length ? styles.fadeInUp : ""
-            }`}
-          >
-            {timestamp}
+          <div className={styles.timestamp}>
+            {input.length > 0 && (
+              <>
+                {isNaN(timestamp) && (
+                  <span className={styles.fadeInUp}>Error</span>
+                )}
+                {!isNaN(timestamp) && (
+                  <div className={styles.fadeInUp}>
+                    <span>UNIX: {timestamp} </span>
+                    <span>
+                      DATE: {dayjs(timestamp).format("YYYY-MM-DDTHH:mm:ssZ[Z]")}
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

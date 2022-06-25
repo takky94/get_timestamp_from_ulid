@@ -99,8 +99,9 @@ $box-size: 18px;
     position: absolute;
     text-align: center;
     width: 100%;
-    &.fadeInUp {
+    .fadeInUp {
       animation: fadeInUp 0.5s ease-in-out forwards;
+      display: block;
     }
   }
 }
