@@ -73,12 +73,32 @@ $box-size: 18px;
     font-weight: 700;
     margin: auto;
     padding: 1em 1.5em;
+    transition: .2s;
     width: 100%;
+    &:hover, &:focus, &:active{
+      box-shadow: 1px 1px 1px #111;
+      transform: translateY(3px);
+    }
   }
   .timestamp{
     bottom: -50px;
     display: block;
     position: absolute;
     text-align: center;
+    width: 100%;
+    &.fadeInUp{
+      animation: fadeInUp .5s ease-in-out forwards;
+    }
+  }
+}
+
+@keyframes fadeInUp{
+  0%{
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
   }
 }
