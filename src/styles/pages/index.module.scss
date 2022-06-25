@@ -12,7 +12,10 @@
 }
 
 .container{
+  align-items: center;
   border: 3px solid #222;
+  display: flex;
+  justify-content: center;
   height: 90vh;
   margin: auto;
   position: absolute;
@@ -22,6 +25,7 @@
 $box-size: 18px;
 
 .box{
+  position: absolute;
   &Top::before, &Top::after,
   &Bottom::before, &Bottom::after{
     background: #fff;
@@ -54,4 +58,27 @@ $box-size: 18px;
   left: 1.2em;
   position: absolute;
   top: 1em;
+}
+
+.main{
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  .input{
+    background-color: #fff;
+    border: 3px solid #222;
+    box-shadow: 4px 4px 0 #222;
+    color: #222;
+    font-size: 18px;
+    font-weight: 700;
+    margin: auto;
+    padding: 1em 1.5em;
+    width: 100%;
+  }
+  .timestamp{
+    bottom: -50px;
+    display: block;
+    position: absolute;
+    text-align: center;
+  }
 }

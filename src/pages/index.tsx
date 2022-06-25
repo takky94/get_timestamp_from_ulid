@@ -12,6 +12,10 @@ const Index: NextPage = () => {
         <h1 className={styles.title}>Get The Timestamp From A Given ULID</h1>
         <span className={styles.boxTop}></span>
         <span className={styles.boxBottom}></span>
+        <div className={styles.main}>
+          <input className={styles.input} type="text" />
+          <div className={styles.timestamp}>うんこ</div>
+        </div>
       </div>
     </div>
   )
